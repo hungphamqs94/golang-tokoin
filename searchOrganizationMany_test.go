@@ -2,12 +2,11 @@ package main
 
 import "testing"
 
-func TestSearchOrganizationMany(t *testing.T){
+func TestSearchOrganizationMany(t *testing.T) {
 
-	readFile();
-
+	readFile()
 	termWrongResult := searchOrganizationMany("OrganizationId", "1")
-	if termWrongResult != "Term not exists at organization"{
+	if termWrongResult != "Term not exists at organization" {
 		t.Errorf("Output Term not exists at organization instead od %v", termWrongResult)
 	}
 
@@ -17,12 +16,12 @@ func TestSearchOrganizationMany(t *testing.T){
 	}
 
 	noResultsFound := searchOrganizationMany("_id", "25251")
-	if noResultsFound != "No results found"{
+	if noResultsFound != "No results found" {
 		t.Errorf("Output expect No results found instead of %v", noResultsFound)
 	}
 
 	resultsFound := searchOrganizationMany("_id", "101")
-	if resultsFound != "Have results"{
+	if resultsFound != "Have results" {
 		t.Errorf("Output expect Have results instead of %v", resultsFound)
 	}
 }

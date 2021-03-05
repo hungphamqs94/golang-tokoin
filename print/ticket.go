@@ -1,9 +1,9 @@
-package print 
+package print
 
 import (
+	models "challenge/models"
 	"fmt"
 	"reflect"
-	models "challenge/models"
 )
 
 func PrintlnTicket(u models.Ticket) {
@@ -12,27 +12,26 @@ func PrintlnTicket(u models.Ticket) {
 
 	for i := 0; i < s.NumField(); i++ {
 		f := s.Field(i)
-			
-			if typeOfT.Field(i).Name == "Tags" {
-				var data []string = f.Interface().([]string)
-				fmt.Printf("%30s", typeOfT.Field(i).Name);
-				fmt.Printf("\t\t\t");
-				fmt.Printf("[")
-				for j:=0;j<len(data);j++ {
-					fmt.Printf("\"")
-					fmt.Printf("%v",data[j])
-					fmt.Printf("\"")
-					if j<len(data)-1{
-						fmt.Printf(",")
-					}
+		if typeOfT.Field(i).Name == "Tags" {
+			var data []string = f.Interface().([]string)
+			fmt.Printf("%30s", typeOfT.Field(i).Name)
+			fmt.Printf("\t\t\t")
+			fmt.Printf("[")
+			for j := 0; j < len(data); j++ {
+				fmt.Printf("\"")
+				fmt.Printf("%v", data[j])
+				fmt.Printf("\"")
+				if j < len(data)-1 {
+					fmt.Printf(",")
 				}
-				fmt.Printf("]")
-				fmt.Printf("\n")
-			}else{
-				fmt.Printf("%30s", typeOfT.Field(i).Name);
-				fmt.Printf("\t\t\t");
-				fmt.Printf("%v", f.Interface())
-				fmt.Printf("\n");
 			}
+			fmt.Printf("]")
+			fmt.Printf("\n")
+		} else {
+			fmt.Printf("%30s", typeOfT.Field(i).Name)
+			fmt.Printf("\t\t\t")
+			fmt.Printf("%v", f.Interface())
+			fmt.Printf("\n")
+		}
 	}
 }
